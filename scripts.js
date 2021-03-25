@@ -4,6 +4,10 @@ const loadAllJobs = () => {
   .then(data => {
     console.log(data);
     const conatainer = document.getElementById('job-list');
+
+    // For finalizing
+    conatainer.innerHTML = '';
+
     data.forEach(job => {
       console.log(job._id);
       const item = document.createElement('div');
@@ -15,7 +19,7 @@ const loadAllJobs = () => {
         <h4>${job.jobName}</h4>
         <p class="m-0">${job.jobDescription}</p>
         <button class="btn btn-primary" onclick="loadProduct('${job._id}')">Update</button>
-        <button class="btn btn-primary" onclick="deleteProduct('${job._id}')">Delete</button>
+        <button class="btn btn-primary" onclick="deleteProduct(event, '${job._id}')">Delete</button>
       `;
       conatainer.appendChild(item);
     });
@@ -25,12 +29,16 @@ const loadAllJobs = () => {
 loadAllJobs();
 
 // Delete Product Function
-const deleteProduct = (id) => {
+const deleteProduct = (event, id) => {
   fetch(`/delete/${id}`, {
     method: 'DELETE'
   })
   .then(res => res.json())
-  .then(result => console.log('Deleted successfully'));
+  .then(result => {
+    if (result) {
+      event.target.parentNode.style.display = "none";
+    }
+  });
 }
 
 // Load Product Function
@@ -42,17 +50,17 @@ const loadProduct = (id) => {
     update.innerHTML = `
       <h4 class="text-center mt-5">Update</h4>
       <div class="row p-3 g-2">
-        <div class="col-md">
+        <div class="col-md-5">
           <div class="mb-3">
             <input type="text" class="form-control" id="updateJobName" name="updateJobName" placeholder="Update Job Name" value="${data.jobName}">
           </div>
         </div>
-        <div class="col-md">
+        <div class="col-md-5">
           <div class="mb-3">
             <input type="text" class="form-control" id="updateJobDescription" name="updateJobDescription" placeholder="Update Job Description" value="${data.jobDescription}">
           </div>
         </div>
-        <div class="col-md">
+        <div class="col-md-2">
           <div class="mb-3">
             <input type="submit" class="btn btn-primary w-100 form-control" value="Submit" onclick="updateProduct('${data._id}')">
           </div>
@@ -74,5 +82,10 @@ const updateProduct = (id) => {
     body: JSON.stringify(job)
   })
   .then(res => res.json())
-  .then(result => console.log('Updated successfully'));
+  .then(result => {
+    if (result) {
+      loadAllJobs();
+      document.getElementById('job-update').innerHTML = '';
+    }
+  });
 }

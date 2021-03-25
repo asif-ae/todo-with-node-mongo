@@ -37,7 +37,7 @@ client.connect(err => {
     jobCollection.insertOne(job)
     .then(result => {
       console.log('data added successfully');
-      res.send('success');
+      res.redirect('/');
     })
   });
 
@@ -47,7 +47,7 @@ client.connect(err => {
     jobCollection.deleteOne({_id: job})
     .then((result) => {
       console.log(result);
-      // res.send('delete');
+      res.send(result.deletedCount > 0);
     });
   });
 
@@ -69,7 +69,7 @@ client.connect(err => {
       { $set: { jobName: req.body.jobName, jobDescription: req.body.jobDescription } }
     )
     .then((result) => {
-      console.log(result);
+      res.send(result.modifiedCount > 0);
     });
   });
 });
