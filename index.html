@@ -9,25 +9,29 @@
 </head>
 <body class="container">
   <h1 class="text-center">My Todo List</h1>
-  <div class="row p-3 g-2">
-    <div class="col-md">
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Job Name</label>
+  <form action="/addJob" method="post">
+    <div class="row p-3 g-2">
+      <div class="col-md">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" name="job-name" placeholder="job-name">
+          <label for="floatingInput">Job Name</label>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" name="job-description" placeholder="job-description">
+          <label for="floatingInput">Job Description</label>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="mb-3">
+          <input type="submit" class="btn btn-primary w-100 form-control py-3" value="Submit">
+        </div>
       </div>
     </div>
-    <div class="col-md">
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Job Description</label>
-      </div>
-    </div>
-    <div class="col-md">
-      <div class="mb-3">
-        <input type="submit" class="btn btn-primary w-100 form-control py-3" value="Submit">
-      </div>
-    </div>
-  </div>
+  </form>
+  <div id="job-list"></div>
+  <div id="job-update"></div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./scripts.js"></script>
 </body>
