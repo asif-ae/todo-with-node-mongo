@@ -12,20 +12,18 @@
   <form action="/addJob" method="post">
     <div class="row p-3 g-2">
       <div class="col-md">
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="floatingInput" name="job-name" placeholder="job-name">
-          <label for="floatingInput">Job Name</label>
-        </div>
-      </div>
-      <div class="col-md">
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="floatingInput" name="job-description" placeholder="job-description">
-          <label for="floatingInput">Job Description</label>
+        <div class="mb-3">
+          <input type="text" class="form-control" name="jobName" placeholder="Job Name">
         </div>
       </div>
       <div class="col-md">
         <div class="mb-3">
-          <input type="submit" class="btn btn-primary w-100 form-control py-3" value="Submit">
+          <input type="text" class="form-control" name="jobDescription" placeholder="Job Description">
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="mb-3">
+          <input type="submit" class="btn btn-primary w-100 form-control" value="Submit">
         </div>
       </div>
     </div>
